@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Operazione Sorriso - Salviamo il Molisn't</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #fce4ec;
+            color: #4a148c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 15px;
+            overflow-x: hidden;
+        }
+
+        /* --- PRINCIPESSA STILIZZATA IN CSS --- */
+        .princess-container {
+            position: relative;
+            width: 100px;
+            height: 130px;
+            margin: 10px auto;
+            transform: scale(0.9);
+        }
+
+        .crown {
+            position: absolute;
+            top: 0;
+            left: 35px;
+            width: 30px;
+            height: 15px;
+            background: #ffd700;
+            clip-path: polygon(0% 100%, 20% 0%, 50% 70%, 80% 0%, 100% 100%);
+            z-index: 3;
+        }
+
+        .hair {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: #ffe082;
+            border-radius: 50% 50% 20% 20%;
+            z-index: 1;
+        }
+
+        .face {
+            position: absolute;
+            top: 18px;
+            left: 30px;
+            width: 40px;
+            height: 35px;
+            background: #ffecb3;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .eyes {
+            position: absolute;
+            top: 12px;
+            left: 8px;
+            width: 24px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .eye {
+            width: 5px;
+            height: 7px;
+            background: #0288d1;
+            border-radius: 50%;
+        }
+
+        .smile {
+            position: absolute;
+            top: 22px;
+            left: 15px;
+            width: 10px;
+            height: 5px;
+            border-bottom: 2px solid #e91e63;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .dress {
+            position: absolute;
+            top: 50px;
+            left: 15px;
+            width: 70px;
+            height: 70px;
+            background: #f48fb1;
+            border-radius: 40% 40% 10% 10%;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+            z-index: 2;
+        }
+
+        .dress-puffs {
+            position: absolute;
+            top: 48px;
+            left: 10px;
+            width: 80px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 3;
+        }
+
+        .puff {
+            width: 20px;
+            height: 20px;
+            background: #f06292;
+            border-radius: 50%;
+        }
+
+        /* --- STILE CONTENITORE E SCHEDE --- */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 15px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.15);
+            border: 3px solid #f8bbd0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            color: #d81b60;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            line-height: 1.4;
+            color: #6a1b9a;
+        }
+
+        .btn {
+            background: #ec407a;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.1s ease, background 0.2s ease;
+            font-weight: bold;
+            margin: 6px 0;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+            background: #d81b60;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        /* Elementi Interattivi */
+        .chests, .bushes {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .interactive-item {
+            font-size: 3rem;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.1s;
+        }
+
+        .interactive-item:active {
+            transform: scale(1.2);
+        }
+
+        .star-area {
+            position: relative;
+            height: 140px;
+            background: #fff8e1;
+            border-radius: 12px;
+            margin: 15px 0;
+            overflow: hidden;
+            border: 2px dashed #ffe082;
+            touch-action: manipulation;
+        }
+
+        .floating-star {
+            position: absolute;
+            font-size: 2.2rem;
+            cursor: pointer;
+            user-select: none;
+            padding: 5px;
+        }
+
+        /* Animation Heart */
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
+        }
+
+        .heart {
+            position: fixed;
+            color: #e91e63;
+            animation: floatUp 2s linear forwards;
+            font-size: 1.8rem;
+            pointer-events: none;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="princess-container">
+            <div class="crown"></div>
+            <div class="hair"></div>
+            <div class="face">
+                <div class="eyes">
+                    <div class="eye"></div>
+                    <div class="eye"></div>
+                </div>
+                <div class="smile"></div>
+            </div>
+            <div class="dress-puffs">
+                <div class="puff"></div>
+                <div class="puff"></div>
+            </div>
+            <div class="dress"></div>
+        </div>
+
+        <div id="step-0" class="step active">
+            <h1>Regno del Sorriso! 👑</h1>
+            <p>Ciao! La Signorina Gioielli ha bisogno del tuo aiuto per ritrovare il suo sorriso. Hai voglia di superare 5 piccole sfide veloci?</p>
+            <button class="btn" onclick="nextStep(1)">Accetto la missione! ✨</button>
+        </div>
+
+        <div id="step-1" class="step">
+            <h1>Prova 1/5: La Chiave Magica 🗝️</h1>
+            <p>Tocco lo scrigno giusto per aprire il portone!</p>
+            <div class="chests">
+                <span class="interactive-item" onclick="checkChest(1)">📦</span>
+                <span class="interactive-item" onclick="checkChest(2)">🎁</span>
+                <span class="interactive-item" onclick="checkChest(3)">🧰</span>
+            </div>
+            <p id="msg-1" style="font-weight: bold; color: #ec407a; min-height: 24px;"></p>
+        </div>
+
+        <div id="step-2" class="step">
+            <h1>Prova 2/5: Il Quiz Salva-Umore 🌸</h1>
+            <p>Cosa si fa quando una giornata storta prova a rovinare le cose?</p>
+            <button class="btn" onclick="wrongAnswer()">Ci si dispera 😭</button>
+            <button class="btn" onclick="nextStep(3)">Pausa, bel sorriso e qualcosa di buono! 🍰</button>
+        </div>
+
+        <div id="step-3" class="step">
+            <h1>Prova 3/5: Trova la Signorina! 👑</h1>
+            <p>La Signorina si è nascosta! Tocca il cespuglio giusto:</p>
+            <div class="bushes">
+                <span class="interactive-item" onclick="checkBush(false)">🌳</span>
+                <span class="interactive-item" onclick="checkBush(true)">🌳</span>
+                <span class="interactive-item" onclick="checkBush(false)">🌳</span>
+            </div>
+            <p id="msg-3" style="font-weight: bold; color: #ec407a; min-height: 24px;"></p>
+        </div>
+
+        <div id="step-4" class="step">
+            <h1>Prova 4/5: Caccia alle Stelle 🌟</h1>
+            <p>Tocca le 3 stelle magiche nello riquadro!</p>
+            <div class="star-area" id="star-box">
+                <span class="floating-star" style="top: 10px; left: 15%;" onclick="catchStar(this)">⭐</span>
+                <span class="floating-star" style="top: 65px; left: 70%;" onclick="catchStar(this)">⭐</span>
+                <span class="floating-star" style="top: 30px; left: 45%;" onclick="catchStar(this)">⭐</span>
+            </div>
+            <p>Stelle catturate: <span id="star-count">0</span>/3</p>
+        </div>
+
+        <div id="step-5" class="step">
+            <h1>Prova 5/5: Il Bottone Finale 💖</h1>
+            <p>Premi il pulsante rosa per sbloccare la sorpresa finale!</p>
+            <button class="btn" style="font-size: 1.2rem; padding: 16px;" onclick="finishGame()">PREMI QUI! 🎉</button>
+        </div>
+
+        <div id="step-6" class="step">
+            <h1>VITTORIA! 👑✨</h1>
+            <p style="font-size: 1rem; color: #d81b60; font-weight: bold; margin-top: 10px;">
+                "Ricordati che anche nelle giornate storte, sei speciale e meriti sempre di sorridere!" 
+            </p>
+            <p style="margin-top: 15px;"> E dato che hai vinto, venerdì ti meriti un bacio (ma piccolo che non si sa mai)</p>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-' + stepNumber).classList.add('active');
+        }
+
+        function checkChest(num) {
+            const msg = document.getElementById('msg-1');
+            if(num === 2) {
+                msg.textContent = "Bravissima! Hai trovato la chiave! 🔑";
+                setTimeout(() => nextStep(2), 1000);
+            } else {
+                msg.textContent = "Ops! Vuoto, riprova! 😜";
+            }
+        }
+
+        function wrongAnswer() {
+            alert("Sbagliato! Riprova con la scelta più dolce! 😉");
+        }
+
+        function checkBush(isCorrect) {
+            const msg = document.getElementById('msg-3');
+            if(isCorrect) {
+                msg.textContent = "Eccola! Trovata! 👑✨";
+                setTimeout(() => nextStep(4), 1000);
+            } else {
+                msg.textContent = "C'è solo un funghetto 🍄! Riprova!";
+            }
+        }
+
+        let starsCaught = 0;
+        function catchStar(element) {
+            element.style.visibility = 'hidden';
+            starsCaught++;
+            document.getElementById('star-count').textContent = starsCaught;
+            if(starsCaught === 3) {
+                setTimeout(() => nextStep(5), 600);
+            }
+        }
+
+        function finishGame() {
+            nextStep(6);
+            createHearts();
+        }
+
+        function createHearts() {
+            for(let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.innerHTML = '💖';
+                    heart.style.left = (Math.random() * 80 + 10) + 'vw';
+                    heart.style.top = (Math.random() * 20 + 70) + 'vh';
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 2000);
+                }, i * 120);
+            }
+        }
+    </script>
+</body>
+</html>
