@@ -25,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* --- PRINCIPESSA STILIZZATA IN CSS --- */
+        /* --- PRINCIPESSA STILIZZATA CSS ORIGINALE --- */
         .princess-container {
             position: relative;
             width: 100px;
@@ -122,12 +122,12 @@
             border-radius: 50%;
         }
 
-        /* --- STILE CONTENITORE E SCHEDE --- */
+        /* --- CARDS & INTERFACCIA --- */
         .card {
             background: white;
             border-radius: 20px;
             padding: 20px 15px;
-            max-width: 400px;
+            max-width: 420px;
             width: 100%;
             box-shadow: 0 10px 25px rgba(233, 30, 99, 0.15);
             border: 3px solid #f8bbd0;
@@ -142,7 +142,7 @@
 
         p {
             font-size: 0.95rem;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             line-height: 1.4;
             color: #6a1b9a;
         }
@@ -151,13 +151,13 @@
             background: #ec407a;
             color: white;
             border: none;
-            padding: 14px 20px;
-            font-size: 1rem;
+            padding: 12px 18px;
+            font-size: 0.95rem;
             border-radius: 25px;
             cursor: pointer;
             transition: transform 0.1s ease, background 0.2s ease;
             font-weight: bold;
-            margin: 6px 0;
+            margin: 5px 0;
             width: 100%;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
@@ -167,32 +167,27 @@
             background: #d81b60;
         }
 
-        .step {
-            display: none;
+        .step { display: none; }
+        .step.active { display: block; }
+
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
         }
 
-        .step.active {
-            display: block;
-        }
-
-        /* Elementi Interattivi */
-        .chests, .bushes {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .interactive-item {
-            font-size: 3rem;
+        .grid-item {
+            font-size: 2.2rem;
+            background: #fff3e0;
+            padding: 15px 5px;
+            border-radius: 12px;
             cursor: pointer;
             user-select: none;
-            transition: transform 0.1s;
+            border: 2px solid #ffe0b2;
         }
 
-        .interactive-item:active {
-            transform: scale(1.2);
-        }
+        .grid-item:active { transform: scale(1.1); }
 
         .star-area {
             position: relative;
@@ -202,18 +197,32 @@
             margin: 15px 0;
             overflow: hidden;
             border: 2px dashed #ffe082;
-            touch-action: manipulation;
         }
 
         .floating-star {
             position: absolute;
-            font-size: 2.2rem;
+            font-size: 2rem;
             cursor: pointer;
             user-select: none;
             padding: 5px;
         }
 
-        /* Animation Heart */
+        .simon-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .simon-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
         @keyframes floatUp {
             0% { transform: translateY(0) scale(1); opacity: 1; }
             100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
@@ -232,6 +241,7 @@
 <body>
 
     <div class="card">
+        <!-- PRINCIPESSA CSS ORIGINALE -->
         <div class="princess-container">
             <div class="crown"></div>
             <div class="hair"></div>
@@ -249,64 +259,100 @@
             <div class="dress"></div>
         </div>
 
+        <!-- INTRO -->
         <div id="step-0" class="step active">
-            <h1>Regno del Sorriso! 👑</h1>
-            <p>Ciao! La Signorina Gioielli ha bisogno del tuo aiuto per ritrovare il suo sorriso. Hai voglia di superare 5 piccole sfide veloci?</p>
-            <button class="btn" onclick="nextStep(1)">Accetto la missione! ✨</button>
+            <h1>Operazione Molisn't! 👑</h1>
+            <p>La Signorina Gioielli ha bisogno di un motivo per sorridere! Supera 7 livelli veloci per sbloccare la ricompensa finale.</p>
+            <button class="btn" onclick="nextStep(1)">Inizia il Gioco! 🚀</button>
         </div>
 
+        <!-- LIVELLO 1 -->
         <div id="step-1" class="step">
-            <h1>Prova 1/5: La Chiave Magica 🗝️</h1>
-            <p>Tocco lo scrigno giusto per aprire il portone!</p>
-            <div class="chests">
-                <span class="interactive-item" onclick="checkChest(1)">📦</span>
-                <span class="interactive-item" onclick="checkChest(2)">🎁</span>
-                <span class="interactive-item" onclick="checkChest(3)">🧰</span>
+            <h1>Livello 1/7: La Chiave Segreta 🗝️</h1>
+            <p>Trova la chiave per aprire le porte del Molise!</p>
+            <div style="display: flex; justify-content: space-around; font-size: 3rem; margin: 15px 0;">
+                <span onclick="checkChest(1)">📦</span>
+                <span onclick="checkChest(2)">🎁</span>
+                <span onclick="checkChest(3)">🧰</span>
             </div>
             <p id="msg-1" style="font-weight: bold; color: #ec407a; min-height: 24px;"></p>
         </div>
 
+        <!-- LIVELLO 2 -->
         <div id="step-2" class="step">
-            <h1>Prova 2/5: Il Quiz Salva-Umore 🌸</h1>
-            <p>Cosa si fa quando una giornata storta prova a rovinare le cose?</p>
-            <button class="btn" onclick="wrongAnswer()">Ci si dispera 😭</button>
-            <button class="btn" onclick="nextStep(3)">Pausa, bel sorriso e qualcosa di buono! 🍰</button>
-        </div>
-
-        <div id="step-3" class="step">
-            <h1>Prova 3/5: Trova la Signorina! 👑</h1>
-            <p>La Signorina si è nascosta! Tocca il cespuglio giusto:</p>
-            <div class="bushes">
-                <span class="interactive-item" onclick="checkBush(false)">🌳</span>
-                <span class="interactive-item" onclick="checkBush(true)">🌳</span>
-                <span class="interactive-item" onclick="checkBush(false)">🌳</span>
+            <h1>Livello 2/7: Memory dei Dolci 🍰</h1>
+            <p>Trova l'altra fetta di torta!</p>
+            <div class="interactive-grid">
+                <div class="grid-item" onclick="checkMemory(this, '🍩')">❓</div>
+                <div class="grid-item" onclick="checkMemory(this, '🍰')">❓</div>
+                <div class="grid-item" onclick="checkMemory(this, '🍩')">❓</div>
+                <div class="grid-item" onclick="checkMemory(this, '🍦')">❓</div>
+                <div class="grid-item" onclick="checkMemory(this, '🍰')">❓</div>
+                <div class="grid-item" onclick="checkMemory(this, '🍦')">❓</div>
             </div>
-            <p id="msg-3" style="font-weight: bold; color: #ec407a; min-height: 24px;"></p>
+            <p id="msg-2" style="font-weight: bold; color: #ec407a; min-height: 24px;"></p>
         </div>
 
+        <!-- LIVELLO 3 -->
+        <div id="step-3" class="step">
+            <h1>Livello 3/7: Il Quiz Salva-Umore 🌸</h1>
+            <p>Cosa si fa quando la giornata prova a farsi storta?</p>
+            <button class="btn" onclick="wrongAnswer()">Ci si dispera 😭</button>
+            <button class="btn" onclick="wrongAnswer()">Si contano le nuvole ☁️</button>
+            <button class="btn" onclick="nextStep(4)">Pausa, bel sorriso e qualcosa di buono! 🍰</button>
+        </div>
+
+        <!-- LIVELLO 4 -->
         <div id="step-4" class="step">
-            <h1>Prova 4/5: Caccia alle Stelle 🌟</h1>
-            <p>Tocca le 3 stelle magiche nello riquadro!</p>
-            <div class="star-area" id="star-box">
+            <h1>Livello 4/7: Sequenza Magica 🎶</h1>
+            <p>Ripeti la sequenza: Tocca prima il <b style="color:#e91e63">Rosa</b> e poi il <b style="color:#00bcd4">Azzurro</b>!</p>
+            <div class="simon-box">
+                <div id="s-pink" class="simon-btn" style="background:#e91e63" onclick="pressSimon('pink')"></div>
+                <div id="s-blue" class="simon-btn" style="background:#00bcd4" onclick="pressSimon('blue')"></div>
+            </div>
+            <p id="msg-4" style="font-weight: bold; color: #ec407a; min-height: 24px;"></p>
+        </div>
+
+        <!-- LIVELLO 5 -->
+        <div id="step-5" class="step">
+            <h1>Livello 5/7: Nascondino! 🌳</h1>
+            <p>Dove si trova la Signorina Gioielli?</p>
+            <div style="display: flex; justify-content: space-around; font-size: 3rem; margin: 15px 0;">
+                <span onclick="checkBush(false)">🌳</span>
+                <span onclick="checkBush(true)">🌳</span>
+                <span onclick="checkBush(false)">🌳</span>
+            </div>
+            <p id="msg-5" style="font-weight: bold; color: #ec407a; min-height: 24px;"></p>
+        </div>
+
+        <!-- LIVELLO 6 -->
+        <div id="step-6" class="step">
+            <h1>Livello 6/7: Caccia alle Stelle 🌟</h1>
+            <p>Tocca 3 stelle per ricaricare l'energia!</p>
+            <div class="star-area">
                 <span class="floating-star" style="top: 10px; left: 15%;" onclick="catchStar(this)">⭐</span>
                 <span class="floating-star" style="top: 65px; left: 70%;" onclick="catchStar(this)">⭐</span>
                 <span class="floating-star" style="top: 30px; left: 45%;" onclick="catchStar(this)">⭐</span>
             </div>
-            <p>Stelle catturate: <span id="star-count">0</span>/3</p>
+            <p>Stelle: <span id="star-count">0</span>/3</p>
         </div>
 
-        <div id="step-5" class="step">
-            <h1>Prova 5/5: Il Bottone Finale 💖</h1>
-            <p>Premi il pulsante rosa per sbloccare la sorpresa finale!</p>
-            <button class="btn" style="font-size: 1.2rem; padding: 16px;" onclick="finishGame()">PREMI QUI! 🎉</button>
+        <!-- LIVELLO 7 -->
+        <div id="step-7" class="step">
+            <h1>Livello 7/7: Il Bottone Finale 💖</h1>
+            <p>Premi il pulsante rosa per riscattare il premio!</p>
+            <button class="btn" style="font-size: 1.2rem; padding: 16px;" onclick="finishGame()">RISCATTA IL PREMIO! 🎉</button>
         </div>
 
-        <div id="step-6" class="step">
+        <!-- FINALE -->
+        <div id="step-8" class="step">
             <h1>VITTORIA! 👑✨</h1>
             <p style="font-size: 1rem; color: #d81b60; font-weight: bold; margin-top: 10px;">
                 "Ricordati che anche nelle giornate storte, sei speciale e meriti sempre di sorridere!" 
             </p>
-            <p style="margin-top: 15px;"> E dato che hai vinto, venerdì ti meriti un bacio (ma piccolo che non si sa mai)</p>
+            <p style="margin-top: 15px; font-weight: bold; color: #4a148c;">
+                E dato che hai vinto, venerdì ti meriti un bacio (ma piccolo che non si sa mai) 😘
+            </p>
         </div>
     </div>
 
@@ -322,19 +368,55 @@
                 msg.textContent = "Bravissima! Hai trovato la chiave! 🔑";
                 setTimeout(() => nextStep(2), 1000);
             } else {
-                msg.textContent = "Ops! Vuoto, riprova! 😜";
+                msg.textContent = "Vuoto, riprova! 😜";
+            }
+        }
+
+        let firstCard = null;
+        function checkMemory(el, icon) {
+            if(el.textContent !== '❓') return;
+            el.textContent = icon;
+            if(!firstCard) {
+                firstCard = { element: el, icon: icon };
+            } else {
+                if(firstCard.icon === icon && icon === '🍰') {
+                    document.getElementById('msg-2').textContent = "Trovata la coppia di torte! 🍰";
+                    setTimeout(() => nextStep(3), 1000);
+                } else {
+                    let prev = firstCard.element;
+                    setTimeout(() => {
+                        el.textContent = '❓';
+                        prev.textContent = '❓';
+                    }, 600);
+                    firstCard = null;
+                }
             }
         }
 
         function wrongAnswer() {
-            alert("Sbagliato! Riprova con la scelta più dolce! 😉");
+            alert("Risposta sbagliata! Riprova con la scelta più dolce! 😉");
+        }
+
+        let simonStep = 0;
+        function pressSimon(color) {
+            const msg = document.getElementById('msg-4');
+            if(simonStep === 0 && color === 'pink') {
+                simonStep = 1;
+                msg.textContent = "Ottimo! Ora tocca l'Azzurro! 💙";
+            } else if(simonStep === 1 && color === 'blue') {
+                msg.textContent = "Perfetto! 🎶";
+                setTimeout(() => nextStep(5), 1000);
+            } else {
+                simonStep = 0;
+                msg.textContent = "Ops! Sequenza errata, ricomincia dal Rosa!";
+            }
         }
 
         function checkBush(isCorrect) {
-            const msg = document.getElementById('msg-3');
+            const msg = document.getElementById('msg-5');
             if(isCorrect) {
                 msg.textContent = "Eccola! Trovata! 👑✨";
-                setTimeout(() => nextStep(4), 1000);
+                setTimeout(() => nextStep(6), 1000);
             } else {
                 msg.textContent = "C'è solo un funghetto 🍄! Riprova!";
             }
@@ -346,17 +428,17 @@
             starsCaught++;
             document.getElementById('star-count').textContent = starsCaught;
             if(starsCaught === 3) {
-                setTimeout(() => nextStep(5), 600);
+                setTimeout(() => nextStep(7), 600);
             }
         }
 
         function finishGame() {
-            nextStep(6);
+            nextStep(8);
             createHearts();
         }
 
         function createHearts() {
-            for(let i = 0; i < 20; i++) {
+            for(let i = 0; i < 25; i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.classList.add('heart');
