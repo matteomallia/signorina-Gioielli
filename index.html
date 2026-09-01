@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Operazione Sorriso - Salviamo il Molisn't</title>
+    <title>Operazione Sorriso - Salviamo il Molisn't 👑</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,14 +27,14 @@
         </div>
 
         <section id="step-0" class="step active">
-            <h1>Operazione Molisn't! 👑</h1>
-            <p>La Signorina Gioielli ha bisogno di un motivo per sorridere! Supera le sfide per sbloccare la ricompensa finale.</p>
-            <button class="btn" onclick="nextStep(1)">Inizia il Gioco! 🚀</button>
+            <h1>Regno delle Fiabe! 👑✨</h1>
+            <p>La Principessa Gioielli ha bisogno del tuo aiuto per ritrovare il sorriso! Supera 6 magiche sfide per sbloccare il premio finale! 🎀</p>
+            <button class="btn" onclick="nextStep(1)">Inizia la Magia! 🚀✨</button>
         </section>
 
         <section id="step-1" class="step">
-            <h1>Livello 1/6: La Chiave Segreta 🗝️</h1>
-            <p>Trova la chiave per aprire le porte del Molise!</p>
+            <h1>Prova 1/6: Lo Scrigno Segreto 🗝️</h1>
+            <p>Trova la chiave dorata per aprire il castello magico!</p>
             <div class="chests-box">
                 <span onclick="checkChest(1)">📦</span>
                 <span onclick="checkChest(2)">🎁</span>
@@ -44,8 +44,8 @@
         </section>
 
         <section id="step-2" class="step">
-            <h1>Livello 2/6: Memory dei Dolci 🍰</h1>
-            <p>Trova l'altra fetta di torta!</p>
+            <h1>Prova 2/6: Memory dei Pasticcini 🍰</h1>
+            <p>Trova l'altra fetta di torta golosa!</p>
             <div class="interactive-grid">
                 <div class="grid-item" onclick="checkMemory(this, '🍩')">❓</div>
                 <div class="grid-item" onclick="checkMemory(this, '🍰')">❓</div>
@@ -58,16 +58,16 @@
         </section>
 
         <section id="step-3" class="step">
-            <h1>Livello 3/6: Il Quiz Salva-Umore 🌸</h1>
-            <p>Cosa si fa quando la giornata prova a farsi storta?</p>
-            <button class="btn" onclick="wrongAnswer()">Ci si dispera 😭</button>
-            <button class="btn" onclick="wrongAnswer()">Si contano le nuvole ☁️</button>
-            <button class="btn" onclick="nextStep(4)">Pausa, bel sorriso e qualcosa di buono! 🍰</button>
+            <h1>Prova 3/6: Quiz Salva-Umore 🌸</h1>
+            <p>Cosa fa una vera principessa quando la giornata prova a farsi storta?</p>
+            <button class="btn" onclick="wrongAnswer()">Si dispera e piange 😭</button>
+            <button class="btn" onclick="wrongAnswer()">Mette il muso tutto il giorno ☁️</button>
+            <button class="btn" onclick="nextStep(4)">Pausa, bel sorriso e un dolcetto! 🍰✨</button>
         </section>
 
         <section id="step-4" class="step">
-            <h1>Livello 4/6: Sequenza Magica 🎶</h1>
-            <p>Ripeti la sequenza: Tocca prima il <b class="highlight-pink">Rosa</b> e poi l'<b class="highlight-blue">Azzurro</b>!</p>
+            <h1>Prova 4/6: Sequenza Incantata 🎶</h1>
+            <p>Premi prima la gemma <b class="highlight-pink">Rosa</b> e poi quella <b class="highlight-blue">Azzurra</b>!</p>
             <div class="simon-box">
                 <div id="s-pink" class="simon-btn pink" onclick="pressSimon('pink')"></div>
                 <div id="s-blue" class="simon-btn blue" onclick="pressSimon('blue')"></div>
@@ -76,8 +76,8 @@
         </section>
 
         <section id="step-5" class="step">
-            <h1>Livello 5/6: Nascondino! 🌳</h1>
-            <p>Dove si trova la Signorina Gioielli?</p>
+            <h1>Prova 5/6: Nascondino nel Bosco! 🌳</h1>
+            <p>La principessa si è nascosta! Dove si trova?</p>
             <div class="bushes-box">
                 <span onclick="checkBush(false)">🌳</span>
                 <span onclick="checkBush(true)">🌳</span>
@@ -87,40 +87,40 @@
         </section>
 
         <section id="step-6" class="step">
-            <h1>Livello 6/6: Caccia alle Stelle 🌟</h1>
-            <p>Tocca 3 stelle per ricaricare l'energia!</p>
+            <h1>Prova 6/6: Polvere di Stelle 🌟</h1>
+            <p>Cattura le 3 stelle magiche per ricaricare la bacchetta!</p>
             <div class="star-area">
                 <span class="floating-star pos-1" onclick="catchStar(this)">⭐</span>
                 <span class="floating-star pos-2" onclick="catchStar(this)">⭐</span>
                 <span class="floating-star pos-3" onclick="catchStar(this)">⭐</span>
             </div>
-            <p>Stelle: <span id="star-count">0</span>/3</p>
+            <p>Stelle raccolte: <span id="star-count">0</span>/3 🦄</p>
         </section>
 
         <section id="step-7" class="step">
-            <h1>Domanda a Trabocchetto! 😜</h1>
-            <p>Se ti sei divertita facendo questo gioco, clicca su "NO":</p>
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; margin-top: 15px;">
+            <h1>Domanda Magica! 😜✨</h1>
+            <p>Se ti sei divertita tantissimo, clicca su "NO":</p>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; margin-top: 15px;">
                 <button id="btn-yes" class="btn" style="transition: all 0.25s ease; z-index: 10;" onclick="yesClicked()">SÌ ❤️</button>
-                <button id="btn-no" class="btn" style="background: #90a4ae;" onclick="noClicked()">NO 😜</button>
+                <button id="btn-no" class="btn" style="background: #b0bec5;" onclick="noClicked()">NO 😜</button>
             </div>
         </section>
 
         <section id="step-stubborn" class="step">
             <h1>Sei testarda eh! 😉💬</h1>
             <p style="font-size: 1.1rem; color: #d81b60; font-weight: bold; margin: 20px 0;">
-                Ma non c'era scampo... dovevi per forza dire SÌ! ❤️
+                Ma non c'era scampo... dovevi per forza dire SÌ! ❤️✨
             </p>
-            <button class="btn btn-large" onclick="finishGame()">Scopri il finale! 🎉</button>
+            <button class="btn btn-large" onclick="finishGame()">Scopri il premio finale! 🎉💖</button>
         </section>
 
         <section id="step-8" class="step">
-            <h1>VITTORIA! 👑✨</h1>
+            <h1>VITTORIA MAGICA! 👑✨🎉</h1>
             <p class="final-quote">
-                "Ricordati che anche nelle giornate storte, sei speciale e meriti sempre di sorridere!" 
+                "Ricordati che anche nelle giornate storte, sei speciale e meriti sempre di sorridere!" 🌸
             </p>
             <p class="final-message">
-                E dato che hai vinto, venerdì ti meriti un bacio (ma piccolo che non si sa mai) 😘
+                E dato che hai vinto, venerdì ti meriti un bacio (ma piccolo che non si sa mai) 😘💖
             </p>
         </section>
     </main>
