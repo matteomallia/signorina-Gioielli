@@ -3,124 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Operazione Sorriso - Salviamo il Molisn't</title>
+    <title>Operazione Sorriso — Special Edition</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Background decorativo animato -->
+    <div class="bg-glow"></div>
+
     <main class="card">
-        <!-- PRINCIPESSA CSS -->
-        <div class="princess-container">
-            <div class="crown"></div>
-            <div class="hair"></div>
-            <div class="face">
-                <div class="eyes">
-                    <div class="eye"></div>
-                    <div class="eye"></div>
-                </div>
-                <div class="smile"></div>
-            </div>
-            <div class="dress-puffs">
-                <div class="puff"></div>
-                <div class="puff"></div>
-            </div>
-            <div class="dress"></div>
+        <!-- HEADER AVATAR / ANIMAZIONE -->
+        <div class="character-wrapper">
+            <img id="char-img" class="character-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtYXRwOGMxbmdvdnV3dWFxMXlsZ3lreHMxaDR0ZHFlZXZyYjJ3NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26gsu8UaL0yYj6T6w/giphy.gif" alt="Princess Animation">
         </div>
 
         <!-- INTRO -->
         <section id="step-0" class="step active">
-            <h1>Operazione Molisn't! 👑</h1>
-            <p>La Signorina Gioielli ha bisogno di un motivo per sorridere! Supera 7 livelli veloci per sbloccare la ricompensa finale.</p>
-            <button class="btn" onclick="nextStep(1)">Inizia il Gioco! 🚀</button>
+            <span class="badge">Missione Speciale</span>
+            <h1>Operazione Molisn't 👑</h1>
+            <p>La Signorina Gioielli merita una pausa speciale. Supera le 7 prove tattiche per sbloccare la ricompensa finale.</p>
+            <button class="btn btn-primary" onclick="nextStep(1)">Inizia l'Avventura ✨</button>
         </section>
 
         <!-- LIVELLO 1 -->
         <section id="step-1" class="step">
-            <h1>Livello 1/7: La Chiave Segreta 🗝️</h1>
-            <p>Trova la chiave per aprire le porte del Molise!</p>
-            <div class="chests-box">
-                <span onclick="checkChest(1)">📦</span>
-                <span onclick="checkChest(2)">🎁</span>
-                <span onclick="checkChest(3)">🧰</span>
+            <span class="badge">Livello 1 / 7</span>
+            <h1>La Chiave Segreta 🗝️</h1>
+            <p>Trova lo scrigno con la chiave per aprire il portone del Molise.</p>
+            <div class="interactive-row">
+                <button class="icon-card" onclick="checkChest(1)">📦</button>
+                <button class="icon-card" onclick="checkChest(2)">🎁</button>
+                <button class="icon-card" onclick="checkChest(3)">🧰</button>
             </div>
-            <p id="msg-1" class="feedback-msg"></p>
+            <p id="msg-1" class="feedback"></p>
         </section>
 
         <!-- LIVELLO 2 -->
         <section id="step-2" class="step">
-            <h1>Livello 2/7: Memory dei Dolci 🍰</h1>
-            <p>Trova l'altra fetta di torta!</p>
-            <div class="interactive-grid">
-                <div class="grid-item" onclick="checkMemory(this, '🍩')">❓</div>
-                <div class="grid-item" onclick="checkMemory(this, '🍰')">❓</div>
-                <div class="grid-item" onclick="checkMemory(this, '🍩')">❓</div>
-                <div class="grid-item" onclick="checkMemory(this, '🍦')">❓</div>
-                <div class="grid-item" onclick="checkMemory(this, '🍰')">❓</div>
-                <div class="grid-item" onclick="checkMemory(this, '🍦')">❓</div>
+            <span class="badge">Livello 2 / 7</span>
+            <h1>Memory dei Dolci 🍰</h1>
+            <p>Trova l'abbinamento perfetto prima che scada il tempo!</p>
+            <div class="grid-memory">
+                <button class="memory-card" onclick="checkMemory(this, '🍩')">❓</button>
+                <button class="memory-card" onclick="checkMemory(this, '🍰')">❓</button>
+                <button class="memory-card" onclick="checkMemory(this, '🍩')">❓</button>
+                <button class="memory-card" onclick="checkMemory(this, '🍦')">❓</button>
+                <button class="memory-card" onclick="checkMemory(this, '🍰')">❓</button>
+                <button class="memory-card" onclick="checkMemory(this, '🍦')">❓</button>
             </div>
-            <p id="msg-2" class="feedback-msg"></p>
+            <p id="msg-2" class="feedback"></p>
         </section>
 
         <!-- LIVELLO 3 -->
         <section id="step-3" class="step">
-            <h1>Livello 3/7: Il Quiz Salva-Umore 🌸</h1>
-            <p>Cosa si fa quando la giornata prova a farsi storta?</p>
-            <button class="btn" onclick="wrongAnswer()">Ci si dispera 😭</button>
-            <button class="btn" onclick="wrongAnswer()">Si contano le nuvole ☁️</button>
-            <button class="btn" onclick="nextStep(4)">Pausa, bel sorriso e qualcosa di buono! 🍰</button>
+            <span class="badge">Livello 3 / 7</span>
+            <h1>Quiz Salva-Umore 🌸</h1>
+            <p>Qual è l'unico modo certificato per affrontare una giornata no?</p>
+            <button class="btn btn-option" onclick="wrongAnswer()">Lamentarsi in silenzio 😭</button>
+            <button class="btn btn-option" onclick="wrongAnswer()">Contare fino a mille ☁️</button>
+            <button class="btn btn-option highlight" onclick="nextStep(4)">Pausa, bel sorriso e qualcosa di buono! 🍰</button>
         </section>
 
         <!-- LIVELLO 4 -->
         <section id="step-4" class="step">
-            <h1>Livello 4/7: Sequenza Magica 🎶</h1>
-            <p>Ripeti la sequenza: Tocca prima il <b class="highlight-pink">Rosa</b> e poi il <b class="highlight-blue">Azzurro</b>!</p>
-            <div class="simon-box">
-                <div id="s-pink" class="simon-btn pink" onclick="pressSimon('pink')"></div>
-                <div id="s-blue" class="simon-btn blue" onclick="pressSimon('blue')"></div>
+            <span class="badge">Livello 4 / 7</span>
+            <h1>Sequenza Magica 🎶</h1>
+            <p>Memorizza e premi i colori nell'ordine giusto: <br><strong class="txt-pink">ROSA</strong> ➔ <strong class="txt-blue">AZZURRO</strong></p>
+            <div class="simon-container">
+                <button id="s-pink" class="simon-pad pink" onclick="pressSimon('pink')"></button>
+                <button id="s-blue" class="simon-pad blue" onclick="pressSimon('blue')"></button>
             </div>
-            <p id="msg-4" class="feedback-msg"></p>
+            <p id="msg-4" class="feedback"></p>
         </section>
 
         <!-- LIVELLO 5 -->
         <section id="step-5" class="step">
-            <h1>Livello 5/7: Nascondino! 🌳</h1>
-            <p>Dove si trova la Signorina Gioielli?</p>
-            <div class="bushes-box">
-                <span onclick="checkBush(false)">🌳</span>
-                <span onclick="checkBush(true)">🌳</span>
-                <span onclick="checkBush(false)">🌳</span>
+            <span class="badge">Livello 5 / 7</span>
+            <h1>Nascondino Tattico 🌳</h1>
+            <p>Dove si è nascosta la Signorina Gioielli?</p>
+            <div class="interactive-row">
+                <button class="icon-card" onclick="checkBush(false)">🌳</button>
+                <button class="icon-card" onclick="checkBush(true)">🌳</button>
+                <button class="icon-card" onclick="checkBush(false)">🌳</button>
             </div>
-            <p id="msg-5" class="feedback-msg"></p>
+            <p id="msg-5" class="feedback"></p>
         </section>
 
         <!-- LIVELLO 6 -->
         <section id="step-6" class="step">
-            <h1>Livello 6/7: Caccia alle Stelle 🌟</h1>
-            <p>Tocca 3 stelle per ricaricare l'energia!</p>
-            <div class="star-area">
-                <span class="floating-star pos-1" onclick="catchStar(this)">⭐</span>
-                <span class="floating-star pos-2" onclick="catchStar(this)">⭐</span>
-                <span class="floating-star pos-3" onclick="catchStar(this)">⭐</span>
+            <span class="badge">Livello 6 / 7</span>
+            <h1>Caccia alle Stelle 🌟</h1>
+            <p>Raccogli le 3 stelle per ricaricare la barra dell'energia!</p>
+            <div class="star-box">
+                <span class="star pos-a" onclick="catchStar(this)">⭐</span>
+                <span class="star pos-b" onclick="catchStar(this)">⭐</span>
+                <span class="star pos-c" onclick="catchStar(this)">⭐</span>
             </div>
-            <p>Stelle: <span id="star-count">0</span>/3</p>
+            <p class="counter">Stelle catturate: <strong id="star-count">0</strong> / 3</p>
         </section>
 
         <!-- LIVELLO 7 -->
         <section id="step-7" class="step">
-            <h1>Livello 7/7: Il Bottone Finale 💖</h1>
-            <p>Premi il pulsante rosa per riscattare il premio!</p>
-            <button class="btn btn-large" onclick="finishGame()">RISCATTA IL PREMIO! 🎉</button>
+            <span class="badge">Livello 7 / 7</span>
+            <h1>Ultimo Sforzo 💖</h1>
+            <p>Sei arrivata alla fine. Premi il pulsante per sbloccare la ricompensa speciale.</p>
+            <button class="btn btn-primary pulse" onclick="finishGame()">Sblocca Sorpresa 🎉</button>
         </section>
 
         <!-- FINALE -->
         <section id="step-8" class="step">
+            <span class="badge success">Missione Compiuta!</span>
             <h1>VITTORIA! 👑✨</h1>
-            <p class="final-quote">
-                "Ricordati che anche nelle giornate storte, sei speciale e meriti sempre di sorridere!" 
-            </p>
-            <p class="final-message">
-                E dato che hai vinto, venerdì ti meriti un bacio (ma piccolo che non si sa mai) 😘
-            </p>
+            <p class="quote">"Ricordati che anche nelle giornate storte, sei speciale e meriti sempre di sorridere!"</p>
+            <div class="reward-box">
+                <p>E dato che hai vinto, venerdì ti meriti un bacio (ma piccolo che non si sa mai) 😘</p>
+            </div>
         </section>
     </main>
 
