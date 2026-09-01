@@ -1,7 +1,6 @@
 function nextStep(stepNumber) {
     document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
     
-    // Gestione passaggio numerico o stringa (es. 'stubborn')
     const targetId = typeof stepNumber === 'number' ? 'step-' + stepNumber : 'step-' + stepNumber;
     document.getElementById(targetId).classList.add('active');
 }
@@ -82,7 +81,7 @@ function catchStar(element) {
     }
 }
 
-/* LIVELLO TRABOCCHETTO: CRESCITA BOTTONE SÌ */
+/* LIVELLO TRABOCCHETTO: BOTTONE SÌ GIGANTE */
 let noClicks = 0;
 function noClicked() {
     noClicks++;
@@ -97,7 +96,6 @@ function noClicked() {
     } else if (noClicks === 4) {
         btnYes.style.transform = "scale(5)";
     } else if (noClicks >= 5) {
-        // Alla quinta volta copre tutto lo schermo
         btnYes.style.position = "fixed";
         btnYes.style.top = "0";
         btnYes.style.left = "0";
